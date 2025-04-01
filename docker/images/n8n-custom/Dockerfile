@@ -31,6 +31,10 @@ WORKDIR /home/node
 COPY --from=builder /compiled /usr/local/lib/node_modules/n8n
 COPY docker/images/n8n/docker-entrypoint.sh /
 
+# Install custom modules (cheerio, axios, htmlparser2)
+RUN npm install -g cheerio axios htmlparser2
+
+
 # Setup the Task Runner Launcher
 ARG TARGETPLATFORM
 ARG LAUNCHER_VERSION=1.1.1
