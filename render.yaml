@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: n8n
+    env: docker
+    plan: standard
+    autoDeploy: false
+    region: frankfurt  # ou oregon selon ta zone
+
+    dockerfilePath: docker/images/n8n-custom/Dockerfile
+
+    disks:
+      - name: n8n-disk
+        mountPath: /home/node/.n8n
+        sizeGB: 10
+
+    envVars:
+      - key: N8N_PORT
+        value: "5678"
+      - key: N8N_HOST
+        value: n8n-tiq7.onrender.com  # remplace par l'URL de ton instance
+      - key: N8N_PROTOCOL
+        value: https
+      - key: WEBHOOK_URL
+        value: https://n8n-tiq7.onrender.com
